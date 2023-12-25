@@ -18,9 +18,9 @@ function Banner() {
     };
     getBannerData();
   }, []);
-  function truncate(str,n){
-    console.log(str)
-    return str?.length > n ? str.substr(0,n-1) + "..." : str;
+  function truncate(str, n) {
+    console.log(str);
+    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
   return (
     <header
@@ -29,18 +29,21 @@ function Banner() {
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie?.backdrop_path})`,
         backgroundSize: "cover",
         backgroundPosition: "center center",
-        // marginTop:-22,
+        marginTop: -22,
       }}
     >
       <div className="headerContent">
-        <h1 className="title">{movie?.title || movie?.name || movie?.original_name}</h1>
+        <h1 className="title">
+          {movie?.title || movie?.name || movie?.original_name}
+        </h1>
         <div className="headerButtons">
           <button className="banner_button">Play</button>
           <button className="banner_button">My List</button>
         </div>
-        <h1 className="desc">{truncate(movie?.overview,150)}</h1>
+        <h1 className="desc">{truncate(movie?.overview, 150)}</h1>
       </div>
-    </header>
+      <div className="fadeBanner"></div>
+     </header>
   );
 }
 

@@ -14,7 +14,7 @@ function Row(props) {
       setMovie(response.data.results);
     };
     getPopular();
-  }, [fetchReq]);
+  }, [fetchReq]); 
   return (
     <div className="row">
       <h2>{title}</h2>

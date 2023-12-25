@@ -1,12 +1,14 @@
 import logo from "./logo.svg";
-// import "./App.css"; 
+import "./App.css"; 
 import Row from "./Components/Row";
 import requests from "./requests";
 import Banner from "./Components/Banner/Banner";
+import Navbar from "./Components/Navbar/Navbar";
 
 function App() {
   return (
-    <div >
+    <div className="app" >
+      <Navbar />
       <Banner />
       <Row title={"Trending"} fetchReq={requests.getTrending} isLargeRow={true} />
       {/* <Row title={"UpComing"} fetchReq={requests.getUpComingMovie} /> */}
