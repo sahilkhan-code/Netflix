@@ -1,0 +1,22 @@
+.image{
+    /* height: 200px; */
+    width: 140px;
+    object-fit: contain;
+    margin-right: 10px;
+}
+.card{
+    display: flex;
+    /* flex-direction: row; */
+    overflow-y: hidden;
+    overflow-x: scroll;
+    /* height: '100%'; */
+}
+.card::-webkit-scrollbar{
+    display: none;
+}
+.imageContainer:hover{
+    transition: transform 450ms;
+    transform: scale(1.08);
+    opacity: 1;
+    cursor: pointer;
+}
