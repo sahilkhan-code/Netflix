@@ -3,10 +3,11 @@ import Row from "./Row";
 import requests from "../requests";
 import Banner from "./Banner/Banner";
 import Navbar from "./Navbar/Navbar";
+import "./Home.css"
 
 function Home() {
   return (
-    <div className="app" >
+    <div className="home" >
       <Navbar />
       <Banner />
       <Row title={"Trending"} fetchReq={requests.getTrending} isLargeRow={true} />
@@ -18,7 +19,6 @@ function Home() {
       <Row title={"Action"} fetchReq={requests.getActionMovie} />
       <Row title={"Comedy"} fetchReq={requests.getComedyMovie} />
       <Row title={"Horror"} fetchReq={requests.getHorrorMovie} />
-      <Row title={"Romantic"} fetchReq={requests.getRomanticMovie} />
       <Row title={"Scifi"} fetchReq={requests.getScifi} />
     </div>
   );

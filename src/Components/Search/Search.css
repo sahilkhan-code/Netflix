@@ -1,0 +1,37 @@
+.searchField{
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    width: 25rem;
+    padding: 5px;
+}
+.container{
+    padding-top: 80px;
+    /* height: 90.5vh; */
+
+}
+.searchContainer{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    
+}
+.searchimg{
+    height:30px;
+    align-items: center;
+    margin-right: 20px;
+}
+.searchButton{
+    border: none;
+    background-color: red;
+    border-radius: 10px;
+    width: 70px;
+    margin-left: 0.8rem;
+    color: white;
+}
+.topContainer{
+    height: 100vh;
+}
+.bottomContainer{
+    flex-wrap: wrap;
+}

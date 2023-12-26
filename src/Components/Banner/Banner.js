@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "../../axios";
 import requests from "../../requests";
 import "./Banner.css";
+import { useNavigate } from "react-router-dom";
 
 function Banner() {
+  const navigate = useNavigate();
+
   const [movie, setMovie] = useState([]);
 
   useEffect(() => {
@@ -20,6 +23,10 @@ function Banner() {
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
+  const movieHandler = (movie) => {
+    navigate("/movie", { state: { movie } });
+  };
+
   return (
     <header
       className="header"
@@ -35,13 +42,20 @@ function Banner() {
           {movie?.title || movie?.name || movie?.original_name}
         </h1>
         <div className="headerButtons">
-          <button className="banner_button">Play</button>
+          <button
+            onClick={() => {
+              movieHandler(movie);
+            }}
+            className="banner_button"
+          >
+            Play
+          </button>
           <button className="banner_button">My List</button>
         </div>
         <h1 className="desc">{truncate(movie?.overview, 150)}</h1>
       </div>
       <div className="fadeBanner"></div>
-     </header>
+    </header>
   );
 }
 
