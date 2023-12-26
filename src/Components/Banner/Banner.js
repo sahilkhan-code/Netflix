@@ -14,12 +14,10 @@ function Banner() {
           Math.floor(Math.random() * response.data.results.length - 1)
         ]
       );
-      console.log("rr", movie);
     };
     getBannerData();
   }, []);
   function truncate(str, n) {
-    console.log(str);
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
   return (

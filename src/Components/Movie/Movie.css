@@ -1,0 +1,51 @@
+.topTitle{
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        margin-top: 0px;
+}
+.genres{
+    color: silver;
+    margin-top: 0px; 
+}
+.description{
+    font-size: 0.8rem;
+    line-height: 1.3;
+    padding-top: 1rem;
+    width: 40rem;
+    height: 80px;
+    /* padding-bottom: 50px; */
+    max-height: 360px;
+}
+.trailerButton{
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 550;
+    background-color: red;
+}
+.headerButton{
+    /* margin-top: 1.5rem; */
+    background-color: red;
+    border: none;
+    color: white;
+    height: 22px;
+    width: 125px;
+    font-size: 18px;
+    font-weight: 550;
+    border-radius: 5px;
+    display: flex;
+    padding: 5px;
+    :hover{
+        cursor: pointer;
+    }
+    margin-right: 10px;
+}
+.playbutton{
+    width: 18px;
+    height: 15px;
+    align-self: center;
+}
+.buttons{
+    display: flex;
+}
