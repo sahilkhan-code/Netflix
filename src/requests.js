@@ -12,5 +12,6 @@ const requests = {
   getHorrorMovie: `/discover/movie?with_genres=27&api_key=${API_KEY}`,
   getRomanticMovie: `/discover/movie?with_genres=10749&api_key=${API_KEY}`,
   getScifi: `/discover/movie?with_genres=878&api_key=${API_KEY}`,
+  favMovies:`/account/20845727/favorite/movies`
 };
 export default requests;

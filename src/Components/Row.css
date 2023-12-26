@@ -6,12 +6,22 @@
 }
 .card{
     display: flex;
-    /* flex-direction: row; */
     overflow-y: hidden;
     overflow-x: scroll;
-    /* height: '100%'; */
+    height: 250px;
+    align-items: center;
+}
+.cardSmall{
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    height: 150px;
+    align-items: center;
 }
 .card::-webkit-scrollbar{
+    display: none;
+}
+.cardSmall::-webkit-scrollbar{
     display: none;
 }
 .imageContainer:hover{
@@ -28,4 +38,26 @@
     width: 200px;
     object-fit: contain;
     margin-right: 10px;
+}
+.favourite{
+    background-color: red;
+    width: 140px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+.favourite:hover{
+    cursor: pointer;
+}
+.favouritesmall{
+    background-color: red;
+    width: 200px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+.favouritesmall:hover{
+    cursor: pointer;
 }

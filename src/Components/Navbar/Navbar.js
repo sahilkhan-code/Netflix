@@ -40,7 +40,8 @@ function Navbar() {
         src="https://www.freepnglogos.com/uploads/netflix-logo-0.png"
         alt="Netflix Logo"
       />
-      <div>
+      <div style={{ display: "flex" }}>
+        <div onClick={()=>{navigate("/favourite")}} className="favText">Favourites</div>
         <img
           onClick={() => {
             searchHandler();

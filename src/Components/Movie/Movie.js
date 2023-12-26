@@ -96,18 +96,18 @@ function Movie(props) {
               </div>
               <div className="headerButtons">
                 <button className="banner_button">+ My List</button>
+                <button className="watchlistButton">Add to WatchList</button>
               </div>
             </div>
           </div>
         </header>
       )}
       <div className="fadeBanner"></div>
-
       <div style={{ margin: 20 }}>
         <span style={{ fontSize: 25, fontWeight: 700 }}> OverView</span>
         <h1 className="description">{data?.overview}</h1>
       </div>
-      {console.log(trailerUrl)}
+      {(trailerUrl)}
       {trailerUrl ? <YouTube videoId={trailerUrl} opts={opts} /> : null}
 
       <div className="morelikethis">

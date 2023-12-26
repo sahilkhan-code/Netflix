@@ -40,3 +40,19 @@ transition: all 0.5s;
     border-radius: 10px;
     margin-bottom: 12px;
 }
+.favText{
+    display: flex;
+    background-color: red;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    height: 30px;
+    width: 100px;
+    font-weight: 600;
+    margin-right: 30px;
+   
+}
+.favText:hover{
+    cursor: pointer;
+}
