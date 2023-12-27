@@ -1,3 +1,7 @@
 .favourite:hover{
     cursor: pointer;
 }
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+}

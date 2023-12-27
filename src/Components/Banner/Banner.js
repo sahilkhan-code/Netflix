@@ -50,7 +50,7 @@ function Banner() {
           >
             Play
           </button>
-          <button className="banner_button">My List</button>
+          <button onClick={()=>{navigate("/favourite")}} className="banner_button">My List</button>
         </div>
         <h1 className="desc">{truncate(movie?.overview, 150)}</h1>
       </div>

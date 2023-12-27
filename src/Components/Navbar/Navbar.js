@@ -41,7 +41,7 @@ function Navbar() {
         alt="Netflix Logo"
       />
       <div style={{ display: "flex" }}>
-        <div onClick={()=>{navigate("/favourite")}} className="favText">Favourites</div>
+        <div onClick={()=>{navigate("/favourite")}} className="favText">+ MyList</div>
         <img
           onClick={() => {
             searchHandler();

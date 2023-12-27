@@ -4,21 +4,18 @@ import axios from "../axios";
 import { useNavigate } from "react-router-dom";
 import "./Favourite.css";
 import images from "../images/images";
-import Watchlist from "./Watchlist";
-import Modal from "./Modal";
+import "./Watchlist.css"
 
-function Favourites() {
+function Watchlist() {
   const navigate = useNavigate();
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
   const imageUrl = "https://image.tmdb.org/t/p/original/";
 
   useEffect(() => {
     const fetchFavoriteMovies = async () => {
-      setLoading(true);
       const options = {
         method: "GET",
-        url: "https://api.themoviedb.org/3/account/20845727/favorite/movies",
+        url: "https://api.themoviedb.org/3/account/20845727/watchlist/movies",
         params: { language: "en-US", page: "1", sort_by: "created_at.asc" },
         headers: {
           accept: "application/json",
@@ -29,11 +26,11 @@ function Favourites() {
 
       try {
         const response = await axios.request(options);
+        console.log("get", response);
         setMovies(response.data.results);
-        setLoading(false);
       } catch (error) {
-        // console.error("Error fetching favorite movies:", error);
-        // throw error;
+        console.error("Error fetching Watchlist movies:", error);
+        throw error;
       }
     };
 
@@ -44,14 +41,14 @@ function Favourites() {
     navigate("/movie", { state: { movie } });
   };
 
-  const favHandler = async (id) => {
+  const watchListHandler = async (id) => {
     try {
       await axios.post(
-        "https://api.themoviedb.org/3/account/20845727/favorite",
+        "https://api.themoviedb.org/3/account/20845727/watchlist",
         {
           media_type: "movie",
           media_id: id,
-          favorite: false,
+          watchlist: false,
         },
         {
           headers: {
@@ -64,23 +61,21 @@ function Favourites() {
       );
 
       setMovies((prevMovies) => prevMovies.filter((item) => item.id !== id));
-      console.log(movies);
+      console.log(movies)
     } catch (error) {
       console.error("Error removing from favorites:", error);
     }
   };
 
   return (
-    <div className="topContainer" style={{ height: "100%" }}>
-      <Navbar />
-      <Modal isLoading={loading} />
-      <div className="row" style={{ paddingTop: 100 }}>
+    <div className="topContainer" style={{height:'100%'}}>
+      <div className="row">
         {movies && (
           <>
-            <h2>Favourites</h2>
+            <h2>WatchList</h2>
             <div className={"cards"}>
               {movies.map((item) => (
-                <div key={item.id} style={{ marginBottom: 20 }}>
+                <div key={item.id} style={{marginBottom:20}}>
                   <div
                     onClick={() => {
                       movieHandler(item);
@@ -95,11 +90,13 @@ function Favourites() {
                   </div>
                   <div
                     onClick={() => {
-                      favHandler(item.id);
+                        watchListHandler(item.id)
                     }}
-                    className={"favourite"}
+                    className={"watchlist"}
                   >
-                    <img className="favHeart" src={images.favred} />
+                   <div>
+                    Remove
+                    </div>
                   </div>
                 </div>
               ))}
@@ -107,9 +104,8 @@ function Favourites() {
           </>
         )}
       </div>
-      <Watchlist />
     </div>
   );
 }
 
-export default Favourites;
+export default Watchlist;

@@ -1,0 +1,17 @@
+.watchlist:hover{
+    cursor: pointer;
+}
+
+.watchlist{
+    color: white;
+    width: 140px;
+    background-color: red;
+    font-size: 14px;
+    font-weight: 600;
+    height: 20px;
+    text-align: center;
+    margin-top: 7px;
+}
+.topContainer{
+    background-color: black;
+}
