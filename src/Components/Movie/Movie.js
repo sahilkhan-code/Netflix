@@ -166,8 +166,8 @@ function Movie(props) {
           </div>
         </header>
       )}
-      <div className="fadeBanner"></div>
-      <div style={{ margin: 20 }}>
+      <div className="fadeBannerMovie"></div>
+      <div className="`descMovie`" style={{ margin: 20}}>
         <span style={{ fontSize: 25, fontWeight: 700 }}> OverView</span>
         <h1 className="description">{data?.overview}</h1>
       </div>

@@ -56,3 +56,16 @@ transition: all 0.5s;
 .favText:hover{
     cursor: pointer;
 }
+@media (max-width: 576px) {
+   /* .menuList{
+    display: none;
+   } */
+   .navList{
+    display: none;
+   }
+  }
+  @media (min-width: 576px) {
+    .menuList{
+     display: none;
+    }
+   }

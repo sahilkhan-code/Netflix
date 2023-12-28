@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
 import images from "../../images/images";
+import Menu from "../Menu";
 
 function Navbar() {
   const [show, handleShow] = useState(false);
@@ -40,21 +41,33 @@ function Navbar() {
         src="https://www.freepnglogos.com/uploads/netflix-logo-0.png"
         alt="Netflix Logo"
       />
-      <div style={{ display: "flex" }}>
-        <div onClick={()=>{navigate("/favourite")}} className="favText">+ MyList</div>
-        <img
-          onClick={() => {
-            searchHandler();
-          }}
-          className="search"
-          src={images.search}
-          alt="User"
-        />
-        <img
-          className="user"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScTWoxwzeFQXDHnBq2AeOA9T10ZrKM5_PQRA&usqp=CAU"
-          alt="User"
-        />
+      <div className="menuList">
+        <Menu />
+      </div>
+      <div className="navList" >
+        <div style={{ display: "flex" }}>
+          <div
+            onClick={() => {
+              navigate("/favourite");
+            }}
+            className="favText"
+          >
+            + MyList
+          </div>
+          <img
+            onClick={() => {
+              searchHandler();
+            }}
+            className="search"
+            src={images.search}
+            alt="User"
+          />
+          <img
+            className="user"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScTWoxwzeFQXDHnBq2AeOA9T10ZrKM5_PQRA&usqp=CAU"
+            alt="User"
+          />
+        </div>
       </div>
     </div>
   );
