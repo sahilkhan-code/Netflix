@@ -68,11 +68,12 @@ function Watchlist() {
   };
 
   return (
-    <div className="topContainer" style={{height:'100%'}}>
+    <div className="topContainer" style={{ height: movies.length > 0 ? '100%' : '70vh' }}
+    >
       <div className="row">
-        {movies && (
+      <h2>WatchList</h2>
+        {movies && movies.length > 0 ? (
           <>
-            <h2>WatchList</h2>
             <div className={"cards"}>
               {movies.map((item) => (
                 <div key={item.id} style={{marginBottom:20}}>
@@ -102,6 +103,11 @@ function Watchlist() {
               ))}
             </div>
           </>
+        ):(
+          <div className="addNew"
+          >
+            Nothing in WatchList
+          </div>
         )}
       </div>
     </div>

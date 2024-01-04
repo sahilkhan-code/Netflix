@@ -75,9 +75,9 @@ function Favourites() {
       <Navbar />
       <Modal isLoading={loading} />
       <div className="row" style={{ paddingTop: 100 }}>
-        {movies && (
+      <h2>Favourites</h2>
+        {movies && movies.length > 0 ? (
           <>
-            <h2>Favourites</h2>
             <div className={"cards"}>
               {movies.map((item) => (
                 <div key={item.id} style={{ marginBottom: 20 }}>
@@ -105,6 +105,8 @@ function Favourites() {
               ))}
             </div>
           </>
+        ) : (
+          <div className="addNew">Nothing in Favourites</div>
         )}
       </div>
       <Watchlist />

@@ -5,3 +5,8 @@
     display: flex;
     flex-wrap: wrap;
 }
+.addNew{
+    color: white;
+    font-size: 14px;
+    text-align: center;
+}

@@ -9,18 +9,18 @@ function Row(props) {
   const { title, fetchReq, isLargeRow } = props;
   const [movies, setMovies] = useState([]);
   const [favMovies, setFavMovies] = useState([]);
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const imageUrl = "https://image.tmdb.org/t/p/original/";
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true)
+      setLoading(true);
       try {
         const response = await axios.get(fetchReq);
         setMovies(response.data.results);
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
@@ -31,7 +31,7 @@ function Row(props) {
 
   useEffect(() => {
     const fetchFavoriteMovies = async () => {
-      setLoading(true)
+      setLoading(true);
       const options = {
         method: "GET",
         url: "https://api.themoviedb.org/3/account/20845727/favorite/movies",
@@ -46,7 +46,7 @@ function Row(props) {
       try {
         const response = await axios.request(options);
         setFavMovies(response.data.results);
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching favorite movies:", error);
       }
@@ -64,7 +64,7 @@ function Row(props) {
   };
 
   const favHandler = async (id) => {
-    setLoading(true)
+    setLoading(true);
     setFavMovies((prevFavMovies) => {
       if (isFavorite(id)) {
         return prevFavMovies.filter((favMovie) => favMovie.id !== id);
@@ -91,7 +91,7 @@ function Row(props) {
         }
       );
       console.log(response);
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
       console.error("Error updating favorites:", error);
     }
@@ -100,41 +100,43 @@ function Row(props) {
   return (
     <div className="row">
       <Modal isLoading={loading} />
-      {movies && (
+      {movies && movies.length > 0 && (
         <>
           <h2>{title}</h2>
           <div className={isLargeRow ? "card" : "cardSmall"}>
             {movies.map((item) => (
               <div key={item.id}>
-                <div
-                  onClick={() => {
-                    movieHandler(item);
-                  }}
-                  className="imageContainer"
-                >
-                  <img
-                    className={isLargeRow ? "image" : "smallrow"}
-                    src={`${imageUrl}${
-                      isLargeRow ? item.poster_path : item.backdrop_path
-                    }`}
-                    alt={item.title}
-                  />
-                </div>
-                <div
-                  onClick={() => {
-                    favHandler(item.id);
-                  }}
-                  className={
-                    isLargeRow ? "favourite" : "favouritesmall"
-                  }
-                >
-                  {isFavorite(item.id) ?
-                  <img className="favHeart" src={images.favred} />
-                    : 
-                  <img className="favHeart" src={images.favwhite} />
-
-                   }
-                </div>
+                {item.poster_path &&
+                  (item.backdrop_path && (
+                    <>
+                      <div
+                        onClick={() => {
+                          movieHandler(item);
+                        }}
+                        className="imageContainer"
+                      >
+                        <img
+                          className={isLargeRow ? "image" : "smallrow"}
+                          src={`${imageUrl}${
+                            isLargeRow ? item.poster_path : item.backdrop_path
+                          }`}
+                          alt={item.title}
+                        />
+                      </div>
+                      <div
+                        onClick={() => {
+                          favHandler(item.id);
+                        }}
+                        className={isLargeRow ? "favourite" : "favouritesmall"}
+                      >
+                        {isFavorite(item.id) ? (
+                          <img className="favHeart" src={images.favred} />
+                        ) : (
+                          <img className="favHeart" src={images.favwhite} />
+                        )}
+                      </div>
+                    </>
+                  ))}
               </div>
             ))}
           </div>
