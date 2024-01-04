@@ -52,7 +52,7 @@ function Navbar() {
             }}
             className="favText"
           >
-            + MyList
+            MyList
           </div>
           <img
             onClick={() => {

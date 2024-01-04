@@ -6,6 +6,7 @@ import "./Favourite.css";
 import images from "../images/images";
 import Watchlist from "./Watchlist";
 import Modal from "./Modal";
+import requests, { token } from "../requests";
 
 function Favourites() {
   const navigate = useNavigate();
@@ -18,12 +19,11 @@ function Favourites() {
       setLoading(true);
       const options = {
         method: "GET",
-        url: "https://api.themoviedb.org/3/account/20845727/favorite/movies",
+        url: requests.getFavMovies,
         params: { language: "en-US", page: "1", sort_by: "created_at.asc" },
         headers: {
           accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0Yjc3Y2I0MzU4YTQyYmI2MjFhZmQxOTZkYzU5M2Q1MyIsInN1YiI6IjY1ODI3ZjdmY2E4MzU0NDI0NGQ2Y2ZmOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.n_iN9LZpiQw5vtcdHDzCBqEbJNIOk5yskW_5y8vkAqM",
+          Authorization: token,
         },
       };
 
@@ -47,7 +47,7 @@ function Favourites() {
   const favHandler = async (id) => {
     try {
       await axios.post(
-        "https://api.themoviedb.org/3/account/20845727/favorite",
+        requests.addFavMovies,
         {
           media_type: "movie",
           media_id: id,
@@ -57,8 +57,7 @@ function Favourites() {
           headers: {
             accept: "application/json",
             "content-type": "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0Yjc3Y2I0MzU4YTQyYmI2MjFhZmQxOTZkYzU5M2Q1MyIsInN1YiI6IjY1ODI3ZjdmY2E4MzU0NDI0NGQ2Y2ZmOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.n_iN9LZpiQw5vtcdHDzCBqEbJNIOk5yskW_5y8vkAqM",
+            Authorization: token,
           },
         }
       );
@@ -75,7 +74,7 @@ function Favourites() {
       <Navbar />
       <Modal isLoading={loading} />
       <div className="row" style={{ paddingTop: 100 }}>
-      <h2>Favourites</h2>
+        <h2>Favourites</h2>
         {movies && movies.length > 0 ? (
           <>
             <div className={"cards"}>
@@ -88,9 +87,9 @@ function Favourites() {
                     className="imageContainer"
                   >
                     <img
-                      className={"image"}
-                      src={`${imageUrl}${item.poster_path}`}
-                      alt={item.title}
+                      className={item.poster_path ? "image" : "noimg"}
+                      src={item.poster_path ? `${imageUrl}${item.poster_path}` : images.noimg}
+                      // alt={item.title}
                     />
                   </div>
                   <div

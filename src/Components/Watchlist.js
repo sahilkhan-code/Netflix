@@ -4,7 +4,8 @@ import axios from "../axios";
 import { useNavigate } from "react-router-dom";
 import "./Favourite.css";
 import images from "../images/images";
-import "./Watchlist.css"
+import "./Watchlist.css";
+import requests, { token } from "../requests";
 
 function Watchlist() {
   const navigate = useNavigate();
@@ -15,12 +16,11 @@ function Watchlist() {
     const fetchFavoriteMovies = async () => {
       const options = {
         method: "GET",
-        url: "https://api.themoviedb.org/3/account/20845727/watchlist/movies",
+        url: requests.getWatchList,
         params: { language: "en-US", page: "1", sort_by: "created_at.asc" },
         headers: {
           accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0Yjc3Y2I0MzU4YTQyYmI2MjFhZmQxOTZkYzU5M2Q1MyIsInN1YiI6IjY1ODI3ZjdmY2E4MzU0NDI0NGQ2Y2ZmOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.n_iN9LZpiQw5vtcdHDzCBqEbJNIOk5yskW_5y8vkAqM",
+          Authorization: token,
         },
       };
 
@@ -44,7 +44,7 @@ function Watchlist() {
   const watchListHandler = async (id) => {
     try {
       await axios.post(
-        "https://api.themoviedb.org/3/account/20845727/watchlist",
+        requests.watchlist,
         {
           media_type: "movie",
           media_id: id,
@@ -54,29 +54,30 @@ function Watchlist() {
           headers: {
             accept: "application/json",
             "content-type": "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0Yjc3Y2I0MzU4YTQyYmI2MjFhZmQxOTZkYzU5M2Q1MyIsInN1YiI6IjY1ODI3ZjdmY2E4MzU0NDI0NGQ2Y2ZmOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.n_iN9LZpiQw5vtcdHDzCBqEbJNIOk5yskW_5y8vkAqM",
+            Authorization: token,
           },
         }
       );
 
       setMovies((prevMovies) => prevMovies.filter((item) => item.id !== id));
-      console.log(movies)
+      console.log(movies);
     } catch (error) {
       console.error("Error removing from favorites:", error);
     }
   };
 
   return (
-    <div className="topContainer" style={{ height: movies.length > 0 ? '100%' : '70vh' }}
+    <div
+      className="topContainer"
+      style={{ height: movies.length > 0 ? "100%" : "70vh" }}
     >
       <div className="row">
-      <h2>WatchList</h2>
+        <h2>WatchList</h2>
         {movies && movies.length > 0 ? (
           <>
             <div className={"cards"}>
               {movies.map((item) => (
-                <div key={item.id} style={{marginBottom:20}}>
+                <div key={item.id} style={{ marginBottom: 20 }}>
                   <div
                     onClick={() => {
                       movieHandler(item);
@@ -91,23 +92,18 @@ function Watchlist() {
                   </div>
                   <div
                     onClick={() => {
-                        watchListHandler(item.id)
+                      watchListHandler(item.id);
                     }}
                     className={"watchlist"}
                   >
-                   <div>
-                    Remove
-                    </div>
+                    <div>Remove</div>
                   </div>
                 </div>
               ))}
             </div>
           </>
-        ):(
-          <div className="addNew"
-          >
-            Nothing in WatchList
-          </div>
+        ) : (
+          <div className="addNew">Nothing in WatchList</div>
         )}
       </div>
     </div>

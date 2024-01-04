@@ -4,5 +4,6 @@ const images = {
   favred: require("../../src//images/favred.png"),
   favwhite: require("../../src//images/favwhite.png"),
   checked: require("../../src//images/checked.png"),
+  noimg:require("../../src//images/imageNotAv.png"),
 };
 export default images;

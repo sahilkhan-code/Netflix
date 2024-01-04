@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "../../axios";
-import { API_KEY } from "../../requests";
+import requests, { API_KEY, token } from "../../requests";
 import "./Movie.css";
 import images from "../../images/images";
 import Row from "../Row";
@@ -84,7 +84,7 @@ function Movie(props) {
     }, 1000);
     try {
       const response = await axios.post(
-        "https://api.themoviedb.org/3/account/20845727/watchlist",
+        requests.watchlist,
         {
           media_type: "movie",
           media_id: id,
@@ -94,8 +94,7 @@ function Movie(props) {
           headers: {
             accept: "application/json",
             "content-type": "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0Yjc3Y2I0MzU4YTQyYmI2MjFhZmQxOTZkYzU5M2Q1MyIsInN1YiI6IjY1ODI3ZjdmY2E4MzU0NDI0NGQ2Y2ZmOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.n_iN9LZpiQw5vtcdHDzCBqEbJNIOk5yskW_5y8vkAqM",
+            Authorization: token,
           },
         }
       );
@@ -167,7 +166,7 @@ function Movie(props) {
         </header>
       )}
       <div className="fadeBannerMovie"></div>
-      <div className="`descMovie`" style={{ margin: 20}}>
+      <div className="`descMovie`" style={{ margin: 20 }}>
         <span style={{ fontSize: 25, fontWeight: 700 }}> OverView</span>
         <h1 className="description">{data?.overview}</h1>
       </div>

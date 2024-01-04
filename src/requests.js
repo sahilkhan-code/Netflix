@@ -1,4 +1,5 @@
 export const API_KEY = "4b77cb4358a42bb621afd196dc593d53";
+export const token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0Yjc3Y2I0MzU4YTQyYmI2MjFhZmQxOTZkYzU5M2Q1MyIsInN1YiI6IjY1ODI3ZjdmY2E4MzU0NDI0NGQ2Y2ZmOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.n_iN9LZpiQw5vtcdHDzCBqEbJNIOk5yskW_5y8vkAqM";
 
 const requests = {
   getTrending: `/trending/all/day?language=en-US&api_key=${API_KEY}`,
@@ -12,6 +13,9 @@ const requests = {
   getHorrorMovie: `/discover/movie?with_genres=27&api_key=${API_KEY}`,
   getRomanticMovie: `/discover/movie?with_genres=10749&api_key=${API_KEY}`,
   getScifi: `/discover/movie?with_genres=878&api_key=${API_KEY}`,
-  favMovies:`/account/20845727/favorite/movies`
+  getFavMovies:`https://api.themoviedb.org/3/account/20845727/favorite/movies`,
+  addFavMovies:`https://api.themoviedb.org/3/account/20845727/favorite`,
+  watchlist:`https://api.themoviedb.org/3/account/20845727/watchlist`,
+  getWatchList:`https://api.themoviedb.org/3/account/20845727/watchlist/movies`
 };
 export default requests;
